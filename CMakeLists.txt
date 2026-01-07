@@ -11,11 +11,12 @@ find_package(rclcpp REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(tf2 REQUIRED)
+find_package(Eigen3 REQUIRED)
 
-add_executable(turtle_fusion_node src/turtle_fusion_node.cpp
-)
+add_executable(turtle_yaw_ekf_node src/turtle_yaw_ekf_node.cpp)
+target_link_libraries (turtle_yaw_ekf_node Eigen3::Eigen)
 
-ament_target_dependencies(turtle_fusion_node
+ament_target_dependencies(turtle_yaw_ekf_node
   rclcpp
   nav_msgs
   sensor_msgs
@@ -24,7 +25,7 @@ ament_target_dependencies(turtle_fusion_node
 
 
 install(TARGETS
-  turtle_fusion_node
+  turtle_yaw_ekf_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
